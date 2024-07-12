@@ -7,7 +7,7 @@ import { connectToDB } from './config/database' // Import the mongoose configura
 import { parseRssJob } from './jobs/rss.job'
 import { errorHandler, notFound } from './middlewares/error.middleware'
 import postRouter from './routes/post.route'
-dotenv.config({ path: './.env' })
+dotenv.config()
 
 const app = express()
 const port = process.env.PORT || 5000

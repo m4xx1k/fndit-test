@@ -12,9 +12,10 @@ export async function parseRss() {
 		console.log(`[JOB] START PARSING ${RSS_URL}`)
 		const lastSavedPost = await PostModel.findOne({})
 			.select({
+				pubDateMs: 1,
 				pubDate: 1,
 			})
-			.sort({ pubDate: -1 })
+			.sort({ pubDateMs: -1 })
 
 		const lastSavedPostDate = lastSavedPost
 			? Date.parse(lastSavedPost.pubDate)
@@ -26,10 +27,8 @@ export async function parseRss() {
 			const lastNewPostIndex = feedJsonData.rss.channel.item.findIndex(
 				item => Date.parse(item.pubDate) <= lastSavedPostDate
 			)
-			const lastSavedPostDateString = new Date(
-				lastSavedPostDate
-			).toLocaleString()
-			console.log('Last New Post Date', lastSavedPostDateString)
+
+			console.log('Last New Post Date', lastSavedPost.pubDate)
 			if (lastNewPostIndex === -1) return
 			posts = feedJsonData.rss.channel.item.slice(0, lastNewPostIndex)
 			console.log(`Find new ${posts.length} posts`)

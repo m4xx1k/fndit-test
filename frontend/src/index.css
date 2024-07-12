@@ -9,3 +9,10 @@
 body {
 	background-color: #fafafa;
 }
+a {
+	text-decoration: underline;
+}
+
+p {
+	margin-top: 16px;
+}

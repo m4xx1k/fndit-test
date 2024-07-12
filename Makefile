@@ -1,13 +1,13 @@
 .PHONY: up down build logs
 
 up:
-	docker-compose up -d
+	cd docker && docker-compose up -d
 
 down:
-	docker-compose down
+	cd docker && docker-compose down
 
 build:
-	docker-compose build
+	cd docker && docker-compose build
 
 logs:
 	docker-compose logs -f

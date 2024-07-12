@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"scripts": {
 		"start": "tsc && node dist/app.js",
-		"build": "tsc",
+		"build": "npx tsc",
 		"lint": "eslint . --ext .ts",
 		"dev": "nodemon src/app.ts"
 	},

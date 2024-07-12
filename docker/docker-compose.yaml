@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      dockerfile: docker/frontend.Dockerfile
+      context: ..
+    ports:
+      - '3000:3000'
+    networks:
+      - my-network
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=http://backend:5000/api/
+
+  backend:
+    build:
+      dockerfile: docker/backend.Dockerfile
+      context: ..
+    ports:
+      - '5000:5000'
+    depends_on:
+      - mongo
+    networks:
+      - my-network
+    environment:
+      - MONGO_DB_URI=mongodb://mongo:27017/mydatabase
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
