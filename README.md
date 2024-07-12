@@ -15,11 +15,11 @@ yarn
 yarn dev
 ```
 
-### Фронтенд
+### Бекенд
 
 ```bash
-# Перейдіть до папки frontend:
-cd frontend
+# Перейдіть до папки backend:
+cd backend
 
 # Встановіть залежності:
 yarn
